@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+
+const olivia = {
+  name: "olivia",
+  course: "AlgoExpert",
+};
+const shane = {
+  name: "shane",
+  course: "frontendExpert",
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [user, setUser] = useState(olivia);
+
+  const toggleUser = () => {
+    if (user === olivia) {
+      setUser(olivia);
+    } else {
+      setUser(shane);
+    }
+  };
+
+  return <div>Hello World</div>;
 }
 
 export default App;
