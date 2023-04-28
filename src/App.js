@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import Profile from "./components/Profile";
 
 const olivia = {
   name: "olivia",
@@ -15,13 +16,18 @@ function App() {
 
   const toggleUser = () => {
     if (user === olivia) {
-      setUser(olivia);
-    } else {
       setUser(shane);
+    } else {
+      setUser(olivia);
     }
   };
 
-  return <div>Hello World</div>;
+  return (
+    <div>
+      <Profile user={user} />
+      <button onClick={toggleUser}>Toggle User</button>
+    </div>
+  );
 }
 
 export default App;
