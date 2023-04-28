@@ -1,33 +1,30 @@
+import { useContext } from "react";
 import "./App.css";
-import { useState } from "react";
 import Profile from "./components/Profile";
+import { UserContext, UserContextProvider } from "./components/UserContext";
+//context allows us to use state that is accessible by all components
+//useful when you have a 'logged in' user and their info is needed throughout app
 
-const olivia = {
-  name: "olivia",
-  course: "AlgoExpert",
-};
-const shane = {
-  name: "shane",
-  course: "frontendExpert",
-};
-
-function App() {
-  const [user, setUser] = useState(olivia);
-
-  const toggleUser = () => {
-    if (user === olivia) {
-      setUser(shane);
-    } else {
-      setUser(olivia);
-    }
-  };
-
+export default function App() {
   return (
     <div>
-      <Profile user={user} />
-      <button onClick={toggleUser}>Toggle User</button>
+      {/* a provider is a component that  creates the state and sends it down to children*/}
+      {/* instead of giving profile the user={user} prop, we just give user to the provider and every component now has access */}
+      <UserContextProvider>
+        <AppInternal />
+      </UserContextProvider>
     </div>
   );
 }
 
-export default App;
+// cannot call usecontext inside of app because the UserContextProvider is a child of App
+// so we use a helper component to hold the children!
+function AppInternal() {
+  const { toggleUser } = useContext(UserContext);
+  return (
+    <>
+      <Profile />
+      <button onClick={toggleUser}>Toggle User</button>
+    </>
+  );
+}

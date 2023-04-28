@@ -1,11 +1,14 @@
 import React from "react";
 import WelcomeBanner from "./WelcomeBanner";
 import Course from "./Course";
-const Profile = ({ user }) => {
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
+
+const Profile = () => {
   return (
     <div>
-      <WelcomeBanner user={user} />
-      <Course user={user} />
+      <WelcomeBanner />
+      <Course />
     </div>
   );
 };
