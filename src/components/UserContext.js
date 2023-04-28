@@ -2,8 +2,11 @@ import { createContext } from "react";
 import { useState } from "react";
 
 export const UserContext = createContext({
-  name: null,
-  course: null,
+  toggleUser: null,
+  user: {
+    name: null,
+    course: null,
+  },
 });
 
 const olivia = {
